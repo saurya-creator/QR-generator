@@ -136,48 +136,51 @@ function generateQR() {
         width: 150,
         height: 150,
         colorDark: "#000000",
-        colorLight: "#ffffff"
+        colorLight: "#ffffff",
+        callback: function() {
+    
+            document.getElementById("downloadBlack").style.display = "block";
+        }
     });
 
-    setTimeout(() => {
-        document.getElementById("downloadBlack").style.display = "block";
-    }, 100);
-
+    
     new QRCode(document.getElementById("qr2"), {
         text: text,
         width: 150,
         height: 150,
         colorDark: "#e63946",
-        colorLight: "#ffffff"
+        colorLight: "#ffffff",
+        callback: function() {
+            
+            document.getElementById("downloadRed").style.display = "block";
+        }
     });
 
-    setTimeout(() => {
-        document.getElementById("downloadRed").style.display = "block";
-    }, 100);
 
     new QRCode(document.getElementById("qr3"), {
         text: text,
         width: 150,
         height: 150,
         colorDark: "#1d4ed8",
-        colorLight: "#ffffff"
+        colorLight: "#ffffff",
+        callback: function() {
+        
+            document.getElementById("downloadBlue").style.display = "block";
+        }
     });
 
-    setTimeout(() => {
-        document.getElementById("downloadBlue").style.display = "block";
-    }, 100);
-
+    
     new QRCode(document.getElementById("qr4"), {
         text: text,
         width: 150,
         height: 150,
         colorDark: "#2a9d8f",
-        colorLight: "#ffffff"
+        colorLight: "#ffffff",
+        callback: function() {
+        
+            document.getElementById("downloadGreen").style.display = "block";
+        }
     });
-
-    setTimeout(() => {
-        document.getElementById("downloadGreen").style.display = "block";
-    }, 100);
 }
 
 function downloadQR(qrId, fileName) {
@@ -205,8 +208,10 @@ function downloadQR(qrId, fileName) {
 }
 </script>
 
+
 </body>
 </html>
+
 
 
 
