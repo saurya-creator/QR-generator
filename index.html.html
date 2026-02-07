@@ -25,7 +25,7 @@ body {
     width: 100%;
     max-width: 500px;
     text-align: center;
-    margin:0.5cm;
+    margin: 0.5cm;
 }
 
 input {
@@ -131,13 +131,17 @@ function downloadQR(id, name) {
     let qrDiv = document.getElementById(id);
     let img = qrDiv.querySelector("img") || qrDiv.querySelector("canvas");
 
-    let link = document.createElement("a");
-    let dataURL = img.toDataURL("image/jpeg");
-
     
-    link.href = dataURL;
-    link.download = `qr-${name}.jpg`;  
-    link.click();
+    if (img) {
+        let dataURL = img.toDataURL("image/jpeg");
+        let link = document.createElement("a");
+
+        link.href = dataURL;
+        link.download = `qr-${name}.jpg`; 
+        link.click();
+    } else {
+        alert("QR code not generated yet!");
+    }
 }
 </script>
 
