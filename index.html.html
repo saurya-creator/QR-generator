@@ -132,15 +132,14 @@ function downloadQR(id, name) {
     let img = qrDiv.querySelector("img") || qrDiv.querySelector("canvas");
 
     let link = document.createElement("a");
-    link.href = img.src || img.toDataURL("image/png");
-    link.download = `qr-${name}.png`;
+    let dataURL = img.toDataURL("image/jpeg");
+
+    
+    link.href = dataURL;
+    link.download = `qr-${name}.jpg`;  
     link.click();
 }
 </script>
 
 </body>
 </html>
-
-
-
-
