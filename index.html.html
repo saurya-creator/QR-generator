@@ -126,22 +126,25 @@ function generateQR() {
         return;
     }
 
+    
     ["qr1", "qr2", "qr3", "qr4"].forEach(id => {
         document.getElementById(id).innerHTML = "";
         document.getElementById(`download${id.charAt(0).toUpperCase() + id.slice(1)}`).style.display = "none";
     });
 
+    
     new QRCode(document.getElementById("qr1"), {
         text: text,
         width: 150,
         height: 150,
         colorDark: "#000000",
-        colorLight: "#ffffff",
-        callback: function() {
-    
-            document.getElementById("downloadBlack").style.display = "block";
-        }
+        colorLight: "#ffffff"
     });
+
+    
+    setTimeout(() => {
+        document.getElementById("downloadBlack").style.display = "block";
+    }, 100);
 
     
     new QRCode(document.getElementById("qr2"), {
@@ -149,38 +152,41 @@ function generateQR() {
         width: 150,
         height: 150,
         colorDark: "#e63946",
-        colorLight: "#ffffff",
-        callback: function() {
-            
-            document.getElementById("downloadRed").style.display = "block";
-        }
+        colorLight: "#ffffff"
     });
 
+    
+    setTimeout(() => {
+        document.getElementById("downloadRed").style.display = "block";
+    }, 100);
 
+    
     new QRCode(document.getElementById("qr3"), {
         text: text,
         width: 150,
         height: 150,
         colorDark: "#1d4ed8",
-        colorLight: "#ffffff",
-        callback: function() {
-        
-            document.getElementById("downloadBlue").style.display = "block";
-        }
+        colorLight: "#ffffff"
     });
 
     
+    setTimeout(() => {
+        document.getElementById("downloadBlue").style.display = "block";
+    }, 100);
+
+
     new QRCode(document.getElementById("qr4"), {
         text: text,
         width: 150,
         height: 150,
         colorDark: "#2a9d8f",
-        colorLight: "#ffffff",
-        callback: function() {
-        
-            document.getElementById("downloadGreen").style.display = "block";
-        }
+        colorLight: "#ffffff"
     });
+
+    
+    setTimeout(() => {
+        document.getElementById("downloadGreen").style.display = "block";
+    }, 100);
 }
 
 function downloadQR(qrId, fileName) {
@@ -208,9 +214,9 @@ function downloadQR(qrId, fileName) {
 }
 </script>
 
-
 </body>
 </html>
+
 
 
 
