@@ -83,19 +83,19 @@ button {
     <div class="qr-wrapper">
         <div class="qr-box">
             <div id="qr1"></div>
-            <center><button class="download" onclick="downloadQR('qr1','black')">Download</button></center>
+            <center><button class="download" onclick="downloadQR('qr1', 'black')">Download</button></center>
         </div>
         <div class="qr-box">
             <div id="qr2"></div>
-            <center><button class="download" onclick="downloadQR('qr2','red')">Download</button></center>
+            <center><button class="download" onclick="downloadQR('qr2', 'red')">Download</button></center>
         </div>
         <div class="qr-box">
             <div id="qr3"></div>
-            <center><button class="download" onclick="downloadQR('qr3','green')">Download</button></center>
+            <center><button class="download" onclick="downloadQR('qr3', 'green')">Download</button></center>
         </div>
         <div class="qr-box">
             <div id="qr4"></div>
-            <center><button class="download" onclick="downloadQR('qr4','blue')">Download</button></center>
+            <center><button class="download" onclick="downloadQR('qr4', 'blue')">Download</button></center>
         </div>
     </div>
 </div>
@@ -115,8 +115,12 @@ function generateQR() {
         { id: "qr4", color: "#007bff" }
     ];
 
+    
     qrs.forEach(qr => {
-        document.getElementById("qrcode").innerHTML = "";
+
+        document.getElementById(qr.id).innerHTML = "";
+        
+        
         new QRCode(document.getElementById(qr.id), {
             text: text,
             width: 200,
@@ -130,9 +134,10 @@ function generateQR() {
 
 function downloadQR(id, name) {
     let qrDiv = document.getElementById(id);
-    let canvas = qrDiv.querySelector("qrcode");
-
     
+    
+    let canvas = qrDiv.querySelector("canvas");
+
     if (canvas) {
         let dataURL = canvas.toDataURL("image/jpeg");  
         let link = document.createElement("a");
@@ -148,5 +153,3 @@ function downloadQR(id, name) {
 
 </body>
 </html>
-
-
