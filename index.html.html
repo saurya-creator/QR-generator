@@ -25,11 +25,11 @@ body {
     width: 100%;
     max-width: 500px;
     text-align: center;
-    margin:1cm;
+    margin:0.5cm;
 }
 
 input {
-    width: 80%;
+    width: 90%;
     padding: 12px;
     font-size: 16px;
     margin-bottom: 10px;
@@ -48,7 +48,7 @@ button {
 
 .generate {
     background: #667eea;
-    width: 100%;
+    width: fit-content;
 }
 
 .qr-wrapper {
@@ -82,19 +82,19 @@ button {
     <div class="qr-wrapper">
         <div class="qr-box">
             <div id="qr1"></div>
-            <button class="download" onclick="downloadQR('qr1','black')">Download</button>
+            <center><button class="download" onclick="downloadQR('qr1','black')">Download</button></center>
         </div>
         <div class="qr-box">
             <div id="qr2"></div>
-            <button class="download" onclick="downloadQR('qr2','red')">Download</button>
+            <center><button class="download" onclick="downloadQR('qr2','red')">Download</button></center>
         </div>
         <div class="qr-box">
             <div id="qr3"></div>
-            <button class="download" onclick="downloadQR('qr3','green')">Download</button>
+            <center><button class="download" onclick="downloadQR('qr3','green')">Download</button></center>
         </div>
         <div class="qr-box">
             <div id="qr4"></div>
-            <button class="download" onclick="downloadQR('qr4','blue')">Download</button>
+            <center><button class="download" onclick="downloadQR('qr4','blue')">Download</button></center>
         </div>
     </div>
 </div>
@@ -139,4 +139,5 @@ function downloadQR(id, name) {
 
 </body>
 </html>
+
 
