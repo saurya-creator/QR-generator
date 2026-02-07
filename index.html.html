@@ -64,27 +64,27 @@ button {
     border-radius: 8px;
 }
 
-.downloadA {
+.download-A {
     font-size:10px;
     background: "#000000";
     width: fit-content;
     align-self: center;
 }
-.downloadB {
+.download-B {
     font-size:10px;
     background: "#ff0000";
     width: fit-content;
     align-self: center;
 }    
-.downloadC {
+.download-C {
     font-size:10px;
     background: "#28a745";
     width: fit-content;
     align-self: center;
 }
-.downloadD {
+.download-D {
     font-size:10px;
-    background-color: "#007bff";
+    background: "#007bff";
     width: fit-content;
     align-self: center;
 }    
@@ -102,19 +102,19 @@ button {
     <div class="qr-wrapper">
         <div class="qr-box">
             <div id="qr1"></div>
-            <center><button class="downloadA" onclick="downloadQR('qr1', 'black')">Download Black</button></center>
+            <center><button class="download-A" onclick="downloadQR('qr1', 'black')">Download Black</button></center>
         </div>
         <div class="qr-box">
             <div id="qr2"></div>
-            <center><button class="downloadB" onclick="downloadQR('qr2', 'red')">Download Red</button></center>
+            <center><button class="download-B" onclick="downloadQR('qr2', 'red')">Download Red</button></center>
         </div>
         <div class="qr-box">
             <div id="qr3"></div>
-            <center><button class="downloadC" onclick="downloadQR('qr3', 'green')">Download Green</button></center>
+            <center><button class="download-C" onclick="downloadQR('qr3', 'green')">Download Green</button></center>
         </div>
         <div class="qr-box">
             <div id="qr4"></div>
-            <center><button class="downloadD" onclick="downloadQR('qr4', 'blue')">Download Blue</button></center>
+            <center><button class="download-D" onclick="downloadQR('qr4', 'blue')">Download Blue</button></center>
         </div>
     </div>
 </div>
@@ -172,6 +172,7 @@ function downloadQR(id, name) {
 
 </body>
 </html>
+
 
 
 
