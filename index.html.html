@@ -85,137 +85,69 @@
 </head>
 <body>
 
-<div class="container">
     <h2>QR Code Generator</h2>
 
     <input type="text" id="text" placeholder="Enter text or URL">
+    <button onclick="generateQR()">Generate</button>
 
-    <button onclick="generateQR()">Generate QR Codes</button>
-
-    <div id="qrWrapper" style="margin-top:20px; display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); gap:20px;">
-        
-        <div class="qr-box">
-            <div id="qr1"></div>
-            <button id="downloadBlack" onclick="downloadQR('qr1','black-qr.png')" style="display:none;">Download Black</button>
-        </div>
-
-        <div class="qr-box">
-            <div id="qr2"></div>
-            <button id="downloadRed" onclick="downloadQR('qr2','red-qr.png')" style="display:none;">Download Red</button>
-        </div>
-
-        <div class="qr-box">
-            <div id="qr3"></div>
-            <button id="downloadBlue" onclick="downloadQR('qr3','blue-qr.png')" style="display:none;">Download Blue</button>
-        </div>
-
-        <div class="qr-box">
-            <div id="qr4"></div>
-            <button id="downloadGreen" onclick="downloadQR('qr4','green-qr.png')" style="display:none;">Download Green</button>
-        </div>
-
-    </div>
-</div>
+    <div id="qrcode-container"></div>
 
 <script>
-function generateQR() {
-    const text = document.getElementById("text").value.trim();
-
-    if (text === "") {
-        alert("Please enter text or URL");
-        return;
-    }
-
+        function generateQR() {
     
-    ["qr1", "qr2", "qr3", "qr4"].forEach(id => {
-        document.getElementById(id).innerHTML = "";
-        document.getElementById(`download${id.charAt(0).toUpperCase() + id.slice(1)}`).style.display = "none";
-    });
+            document.getElementById("qrcode-container").innerHTML = "";
+            
+            let text = document.getElementById("text").value;
+            
+            
+            if (text === "") {
+                alert("Please enter some text");
+                return;
+            }
 
+            
+            let colors = ['#000000', '#FF0000', '#00FF00'];
+
+            
+            for (let i = 0; i < 4; i++) {
+                let qrCodeDiv = document.createElement("div");
+                qrCodeDiv.classList.add("qr-code-item");
+
+                
+                $('#qrcode-container').append(qrCodeDiv);
+                $(qrCodeDiv).qrcode({
+                    text: text,
+                    width: 200,
+                    height: 200,
+                    color: colors[i % colors.length],  
+                });
+
+            
+                let downloadButton = document.createElement("button");
+                downloadButton.innerText = "Download QR Code " + (i + 1);
+                downloadButton.onclick = function() {
+                    downloadQRCode(qrCodeDiv);
+                };
+                qrCodeDiv.appendChild(downloadButton);
+            }
+        }
+
+        function downloadQRCode(qrCodeDiv) {
+            
+            let canvas = qrCodeDiv.querySelector('canvas');
+            if (!canvas) return;
+            
     
-    new QRCode(document.getElementById("qr1"), {
-        text: text,
-        width: 150,
-        height: 150,
-        colorDark: "#000000",
-        colorLight: "#ffffff"
-    });
-
+            let link = document.createElement('a');
+            link.href = canvas.toDataURL();  
+            link.download = 'qrcode.png';    
+            link.click();                    
+        }
+    </script>
     
-    setTimeout(() => {
-        document.getElementById("downloadBlack").style.display = "block";
-    }, 100);
-
-    
-    new QRCode(document.getElementById("qr2"), {
-        text: text,
-        width: 150,
-        height: 150,
-        colorDark: "#e63946",
-        colorLight: "#ffffff"
-    });
-
-    
-    setTimeout(() => {
-        document.getElementById("downloadRed").style.display = "block";
-    }, 100);
-
-    
-    new QRCode(document.getElementById("qr3"), {
-        text: text,
-        width: 150,
-        height: 150,
-        colorDark: "#1d4ed8",
-        colorLight: "#ffffff"
-    });
-
-    
-    setTimeout(() => {
-        document.getElementById("downloadBlue").style.display = "block";
-    }, 100);
-
-
-    new QRCode(document.getElementById("qr4"), {
-        text: text,
-        width: 150,
-        height: 150,
-        colorDark: "#2a9d8f",
-        colorLight: "#ffffff"
-    });
-
-    
-    setTimeout(() => {
-        document.getElementById("downloadGreen").style.display = "block";
-    }, 100);
-}
-
-function downloadQR(qrId, fileName) {
-    const qrBox = document.getElementById(qrId);
-    const canvas = qrBox.querySelector("canvas");
-    const img = qrBox.querySelector("img");
-
-    let dataUrl = "";
-
-    if (canvas) {
-        dataUrl = canvas.toDataURL("image/png");
-    } else if (img) {
-        dataUrl = img.src;
-    } else {
-        alert("QR not generated yet");
-        return;
-    }
-
-    const link = document.createElement("a");
-    link.href = dataUrl;
-    link.download = fileName;
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
-}
-</script>
-
 </body>
 </html>
+
 
 
 
