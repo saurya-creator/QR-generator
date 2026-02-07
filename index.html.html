@@ -116,7 +116,7 @@ function generateQR() {
     ];
 
     qrs.forEach(qr => {
-        document.getElementById(qr.id).innerHTML = "";
+        document.getElementById("qrcode").innerHTML = "";
         new QRCode(document.getElementById(qr.id), {
             text: text,
             width: 150,
@@ -130,7 +130,7 @@ function generateQR() {
 
 function downloadQR(id, name) {
     let qrDiv = document.getElementById(id);
-    let canvas = qrDiv.querySelector("canvas");
+    let canvas = qrDiv.querySelector("qrcode");
 
     
     if (canvas) {
@@ -148,3 +148,4 @@ function downloadQR(id, name) {
 
 </body>
 </html>
+
