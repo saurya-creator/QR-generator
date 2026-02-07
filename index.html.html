@@ -125,19 +125,33 @@
     }
 
     function downloadQR() {
-        const img = document.querySelector("#qrcode img");
+        const qrContainer = document.getElementById("qrcode");
+        const canvas = qrContainer.querySelector("canvas");
+        const img = qrContainer.querySelector("img");
 
-        if (!img) {
+        let dataUrl = "";
+
+        // If QR is canvas
+        if (canvas) {
+            dataUrl = canvas.toDataURL("image/png");
+        }
+        // If QR is image
+        else if (img) {
+            dataUrl = img.src;
+        } else {
             alert("Generate QR code first");
             return;
         }
 
         const link = document.createElement("a");
-        link.href = img.src;
+        link.href = dataUrl;
         link.download = "qr-code.png";
+        document.body.appendChild(link);
         link.click();
+        document.body.removeChild(link);
     }
 </script>
 
 </body>
 </html>
+
