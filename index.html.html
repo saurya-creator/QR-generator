@@ -122,18 +122,19 @@ function generateQR() {
             width: 150,
             height: 150,
             colorDark: qr.color,
-            colorLight: "#ffffff"
+            colorLight: "#ffffff",
+            correctLevel: QRCode.CorrectLevel.L
         });
     });
 }
 
 function downloadQR(id, name) {
     let qrDiv = document.getElementById(id);
-    let img = qrDiv.querySelector("img") || qrDiv.querySelector("canvas");
+    let canvas = qrDiv.querySelector("canvas");
 
     
-    if (img) {
-        let dataURL = img.toDataURL("image/jpeg");
+    if (canvas) {
+        let dataURL = canvas.toDataURL("image/jpeg");  
         let link = document.createElement("a");
 
         link.href = dataURL;
