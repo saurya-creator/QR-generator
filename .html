@@ -56,3 +56,164 @@
 
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Multi Color QR Generator</title>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+
+<style>
+body {
+    font-family: Arial, sans-serif;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+}
+
+.container {
+    background-color: white;
+    padding: 20px;
+    border-radius: 12px;
+    width: 100%;
+    max-width: 500px;
+    text-align: center;
+    margin:0.5cm;
+}
+
+input {
+    width: 90%;
+    padding: 12px;
+    font-size: 16px;
+    margin-bottom: 10px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+}
+
+button {
+    padding: 10px;
+    margin: 5px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    color: white;
+}
+
+.generate {
+    background: #667eea;
+    width: fit-content;
+}
+
+.qr-wrapper {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.qr-box {
+    border: 1px solid #ddd;
+    padding: 10px;
+    border-radius: 8px;
+}
+
+.download {
+    background: #28a745;
+    width: fit-content;
+    align-self: center;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+    <h2>QR Code Generator</h2>
+
+    <input type="text" id="text" placeholder="Enter text or URL">
+    <button class="generate" onclick="generateQR()">Generate QR Codes</button>
+
+    <div class="qr-wrapper">
+        <div class="qr-box">
+            <div id="qr1"></div>
+            <center><button class="download" onclick="downloadQR('qr1','black')">Download</button></center>
+        </div>
+        <div class="qr-box">
+            <div id="qr2"></div>
+            <center><button class="download" onclick="downloadQR('qr2','red')">Download</button></center>
+        </div>
+        <div class="qr-box">
+            <div id="qr3"></div>
+            <center><button class="download" onclick="downloadQR('qr3','green')">Download</button></center>
+        </div>
+        <div class="qr-box">
+            <div id="qr4"></div>
+            <center><button class="download" onclick="downloadQR('qr4','blue')">Download</button></center>
+        </div>
+    </div>
+</div>
+
+<script>
+function generateQR() {
+    let text = document.getElementById("text").value;
+    if (text === "") {
+        alert("Please enter some text");
+        return;
+    }
+
+    const qrs = [
+        { id: "qr1", color: "#000000" },
+        { id: "qr2", color: "#ff0000" },
+        { id: "qr3", color: "#28a745" },
+        { id: "qr4", color: "#007bff" }
+    ];
+
+    qrs.forEach(qr => {
+        document.getElementById(qr.id).innerHTML = "";
+        new QRCode(document.getElementById(qr.id), {
+            text: text,
+            width: 150,
+            height: 150,
+            colorDark: qr.color,
+            colorLight: "#ffffff"
+        });
+    });
+}
+
+function downloadQR(id, name) {
+    let qrDiv = document.getElementById(id);
+    let img = qrDiv.querySelector("img") || qrDiv.querySelector("canvas");
+
+    let link = document.createElement("a");
+    link.href = img.src || img.toDataURL("image/png");
+    link.download = `qr-${name}.png`;
+    link.click();
+}
+</script>
+
+</body>
+</html>
+
+
+
+
+
