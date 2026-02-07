@@ -85,8 +85,6 @@
 </head>
 <body>
 
-<body>
-
 <div class="container">
     <h2>QR Code Generator</h2>
 
@@ -98,22 +96,22 @@
         
         <div class="qr-box">
             <div id="qr1"></div>
-            <button onclick="downloadQR('qr1','black-qr.png')">Download Black</button>
+            <button id="downloadBlack" onclick="downloadQR('qr1','black-qr.png')" style="display:none;">Download Black</button>
         </div>
 
         <div class="qr-box">
             <div id="qr2"></div>
-            <button onclick="downloadQR('qr2','red-qr.png')">Download Red</button>
+            <button id="downloadRed" onclick="downloadQR('qr2','red-qr.png')" style="display:none;">Download Red</button>
         </div>
 
         <div class="qr-box">
             <div id="qr3"></div>
-            <button onclick="downloadQR('qr3','blue-qr.png')">Download Blue</button>
+            <button id="downloadBlue" onclick="downloadQR('qr3','blue-qr.png')" style="display:none;">Download Blue</button>
         </div>
 
         <div class="qr-box">
             <div id="qr4"></div>
-            <button onclick="downloadQR('qr4','green-qr.png')">Download Green</button>
+            <button id="downloadGreen" onclick="downloadQR('qr4','green-qr.png')" style="display:none;">Download Green</button>
         </div>
 
     </div>
@@ -128,8 +126,9 @@ function generateQR() {
         return;
     }
 
-    ["qr1","qr2","qr3","qr4"].forEach(id => {
+    ["qr1", "qr2", "qr3", "qr4"].forEach(id => {
         document.getElementById(id).innerHTML = "";
+        document.getElementById(`download${id.charAt(0).toUpperCase() + id.slice(1)}`).style.display = "none";
     });
 
     new QRCode(document.getElementById("qr1"), {
@@ -140,6 +139,10 @@ function generateQR() {
         colorLight: "#ffffff"
     });
 
+    setTimeout(() => {
+        document.getElementById("downloadBlack").style.display = "block";
+    }, 100);
+
     new QRCode(document.getElementById("qr2"), {
         text: text,
         width: 150,
@@ -147,6 +150,10 @@ function generateQR() {
         colorDark: "#e63946",
         colorLight: "#ffffff"
     });
+
+    setTimeout(() => {
+        document.getElementById("downloadRed").style.display = "block";
+    }, 100);
 
     new QRCode(document.getElementById("qr3"), {
         text: text,
@@ -156,6 +163,10 @@ function generateQR() {
         colorLight: "#ffffff"
     });
 
+    setTimeout(() => {
+        document.getElementById("downloadBlue").style.display = "block";
+    }, 100);
+
     new QRCode(document.getElementById("qr4"), {
         text: text,
         width: 150,
@@ -163,6 +174,10 @@ function generateQR() {
         colorDark: "#2a9d8f",
         colorLight: "#ffffff"
     });
+
+    setTimeout(() => {
+        document.getElementById("downloadGreen").style.display = "block";
+    }, 100);
 }
 
 function downloadQR(qrId, fileName) {
@@ -191,9 +206,8 @@ function downloadQR(qrId, fileName) {
 </script>
 
 </body>
-
-</body>
 </html>
+
 
 
 
